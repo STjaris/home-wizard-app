@@ -3,6 +3,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -23,6 +24,9 @@
     <swagger-annotations-core.version>2.2.8</swagger-annotations-core.version>
     <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
     <openapi-generator-maven-plugin.version>6.4.0</openapi-generator-maven-plugin.version>
+    <gson.version>2.10.1</gson.version>
+    <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
+    <jackson-datatype-jsr310.version>2.15.1</jackson-datatype-jsr310.version>
   </properties>
 
   <dependencies>
@@ -30,7 +34,10 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-mail</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -61,6 +68,16 @@
       <version>${validation-api.version}</version>
     </dependency>
     <dependency>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
+      <version>${jakarta.annotation-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>${jackson-datatype-jsr310.version}</version>
+    </dependency>
+    <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-annotations</artifactId>
       <version>${swagger-annotations.version}</version>
@@ -75,6 +92,13 @@
       <artifactId>jackson-databind-nullable</artifactId>
       <version>${jackson-databind-nullable.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${gson.version}</version>
+    </dependency>
+
+    <!-- END OPENAPI GENERATOR -->
   </dependencies>
 
   <build>
@@ -82,6 +106,13 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
         <configuration>
           <excludes>
             <exclude>
@@ -115,6 +146,7 @@
               <configOptions>
                 <sourceFolder>src/gen/java/main</sourceFolder>
                 <useOptional>true</useOptional>
+                <useJakartaEe>true</useJakartaEe>
                 <library>resttemplate</library>
               </configOptions>
             </configuration>
