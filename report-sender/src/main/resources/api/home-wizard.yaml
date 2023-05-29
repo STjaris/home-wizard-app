@@ -1,0 +1,155 @@
+openapi: 3.0.0
+info:
+  title: Smart Meter API
+  version: 1.0.0
+paths:
+  /api/v1/data:
+    get:
+      summary: Get smart meter data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  unique_id:
+                    type: string
+                    description: The unique identifier from the smart meter
+                  smr_version:
+                    type: number
+                    description: The DSMR version of the smart meter
+                  meter_model:
+                    type: string
+                    description: The brand identification of the smart meter
+                  wifi_ssid:
+                    type: string
+                    description: The Wi-Fi network that the meter is connected to
+                  wifi_strength:
+                    type: number
+                    description: The strength of the Wi-Fi signal in %
+                  total_power_import_t1_kwh:
+                    type: number
+                    description: The power usage meter reading for tariff 1 in kWh
+                  total_power_import_t2_kwh:
+                    type: number
+                    description: The power usage meter reading for tariff 2 in kWh
+                  total_power_import_t3_kwh:
+                    type: number
+                    description: The power usage meter reading for tariff 3 in kWh
+                  total_power_import_t4_kwh:
+                    type: number
+                    description: The power usage meter reading for tariff 4 in kWh
+                  total_power_export_t1_kwh:
+                    type: number
+                    description: The power feed-in meter reading for tariff 1 in kWh
+                  total_power_export_t2_kwh:
+                    type: number
+                    description: The power feed-in meter reading for tariff 2 in kWh
+                  total_power_export_t3_kwh:
+                    type: number
+                    description: The power feed-in meter reading for tariff 3 in kWh
+                  total_power_export_t4_kwh:
+                    type: number
+                    description: The power feed-in meter reading for tariff 4 in kWh
+                  active_power_w:
+                    type: number
+                    description: The total active usage in watt
+                  active_power_l1_w:
+                    type: number
+                    description: The active usage for phase 1 in watt
+                  active_power_l2_w:
+                    type: number
+                    description: The active usage for phase 2 in watt
+                  active_power_l3_w:
+                    type: number
+                    description: The active usage for phase 3 in watt
+                  active_voltage_l1_v:
+                    type: number
+                    description: The active voltage for phase 1 in volt
+                  active_voltage_l2_v:
+                    type: number
+                    description: The active voltage for phase 2 in volt
+                  active_voltage_l3_v:
+                    type: number
+                    description: The active voltage for phase 3 in volt
+                  active_current_l1_a:
+                    type: number
+                    description: The active current for phase 1 in ampere
+                  active_current_l2_a:
+                    type: number
+                    description: The active current for phase 2 in ampere
+                  active_current_l3_a:
+                    type: number
+                    description: The active current for phase 3 in ampere
+                  active_frequency_hz:
+                    type: number
+                    description: Line frequency in hertz
+                  voltage_sag_l1_count:
+                    type: number
+                    description: Number of voltage sags detected by meter for phase 1
+                  voltage_sag_l2_count:
+                    type: number
+                    description: Number of voltage sags detected by meter for phase 2
+                  voltage_sag_l3_count:
+                    type: number
+                    description: Number of voltage sags detected by meter for phase 3
+                  voltage_swell_l1_count:
+                    type: number
+                    description: Number of voltage swells detected by meter for phase 1
+                  voltage_swell_l2_count:
+                    type: number
+                    description: Number of voltage swells detected by meter for phase 2
+                  voltage_swell_l3_count:
+                    type: number
+                    description: Number of voltage swells detected by meter for phase 3
+                  any_power_fail_count:
+                    type: number
+                    description: Number of power failures detected by meter
+                  long_power_fail_count:
+                    type: number
+                    description: Number of 'long' power fails detected by meter
+                  active_power_average_w:
+                    type: number
+                    description: The active average demand
+                  montly_power_peak_w:
+                    type: number
+                    description: The peak average demand of this month
+                  montly_power_peak_timestamp:
+                    type: number
+                    description: Timestamp when peak demand was registered, formatted as YYMMDDhhmmss
+                  total_gas_m3:
+                    type: number
+                    description: The gas meter reading in m3 for the first detected gas meter
+                  gas_timestamp:
+                    type: number
+                    description: The most recent gas update timestamp structured as YYMMDDhhmmss
+                  unique_gas_id:
+                    type: number
+                    description: The unique identifier for the gas meter
+                  external:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The identifier of the externally connected utility meter
+                        type:
+                          type: string
+                          description: The type of the externally connected utility meter
+                        description:
+                          type: string
+                          description: The description of the externally connected utility meter
+                        data_points:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                description: The name of the data point
+                              value:
+                                type: string
+                                description: The value of the data point
